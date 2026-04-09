@@ -1,15 +1,15 @@
-
-# Kali: FULLY LOADED - Gnome (no chroot)
+# Kali Standalone - Gnome (no chroot)
 The following will not work unless you have first removed your computer's internal drive and replace it with your own ssd, if you continue without having done so, you will overwrite your main OSs efi/bios partition, likely leaving you with an unbootable machine (unless you, like me, are done with MacOS), resulting in a trip to the technician....
  
 When done correctly, one can completely bypass all of the issues and obstacles present such as:
 * the potential overwrite of important data, directories and partitions potentially leading to an irrecoverable loss during installation of Kali Linux.
 * the overwrite of our host machine's efi partition resulting in an unbootable machine.
 * having a naked bootloader which is highly susceptible to evil-maid/-bootloader attacks.
+* time wasted on poorly documented methods which promise a similar result.
  
-Since I completed this on a MacBook Air (13-inch, Early 2015 model), I will assume you'll do the same, although I believe this would work on any EFI bootable machine (I know this works on late 2015 iMacs too) as long as you remove the internal drive. I used a 500 GB pcie 3.2 as the installation medium, and a portable 256G NVME 4.0x4 Blade SSD for the target drive in place of the Apple M.2 SSD.
+Since I completed this on a MacBook Air (13-inch, Early 2015 model), I will assume you'll do the same, although I believe this would work on any EFI bootable machine (I know this works on late 2015 iMacs too) as long as you remove the internal drive. I used a 500 GB pcie 3.2 as the installation medium, and a portable Physon 256G NVME 4.0x4 Blade SSD for the target drive in place of the Apple M.2 SSD, as well as a 2TB WD_Black NVMe.
  
-I compiled this by sourcing through numerous different guides, blogs and reddit posts before I found a way that worked which once replicated has only really seemed to work this way due to memory constraints, a data bottleneck if using old hardware and automatic recognition of specific UUIDs and disk locations in relation to /etc/crypttab*fstab vs mount points. Additionally, it gets much more fast when you plug an ssd directly into the board and install off of a usb 3.2+ via SATA. This is truly when the power of the Debian Installer is realized with Kali Linux where an automatic install may take up to five hours alone to generate an image with a naked bootloader and encrypted LVM versus getting down and dirty on a graphical advanced expert installation. So, what I mainly used:
+I compiled this by sourcing through numerous different guides, blogs and reddit posts, as well as G0TM1LK's "official" documentation (before the relevant material was burned and reimplemented said additions *specifically*), before finding a way which worked once replicated. So, what I mainly used (before official material was redacted, and replaced with placeholder URLs):
  
 	https://www.kali.org/docs/installation/hard-disk-install/
 	https://www.kali.org/docs/installation/btrfs/
@@ -23,7 +23,7 @@ I compiled this by sourcing through numerous different guides, blogs and reddit 
  
 Lastly, while I uncovered a few ways to get this done I am going to assume that you are doing exactly as I did and so from here on out I will refer to our target drive as nvme0n1 and its partitions as nvme0n1p1, nvme0n1p2, nvme0n1p3/nvme0n1p3_crypt/luks-aaaa-aa-aa-aa-aaaaaa, nvme0n1p4_crypt and nvme0n1p5_crypt and so on, so make sure to check your device ids etc before making any changes. Some machines will not recognize the drives as nvme0n1 and will register them as sdX unless mounted in an adapter and the other way around in some cases. Copy this file down and adjust it before you start, checking your drives with lsblk via command line first.
 
-* for extra flavor and security, adjust this guide accordingly so that your EFI partition resides on a separate external thumb-drive so that you can remove the drive in order to mitigate retaliation on your bootloader mid-attack post-install.
+* for extra flavor and security, adjust this guide accordingly so that your EFI partition resides on a separate external thumb-drive so that you can remove the drive in order to mitigate retaliation on your bootloader mid-attack/post-install.
  
 In Mac OS, power it down and carefully remove the internal drive. This will take care of /target/boot/efi being mounted to the wrong location.
  
