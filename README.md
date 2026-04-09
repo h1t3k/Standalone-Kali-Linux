@@ -320,4 +320,4 @@ A common error from this point on may be an inability to boot properly if the or
 Thanks for following along!
 
 
-    ~h1-|t3k/n0|-l1f3~
+    ~h1-t3k~ (n0|l1f3)
